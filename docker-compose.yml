@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  auth-service:
+    build: .
+    container_name: auth-service
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+    restart: always
+    command: ["sh", "-c", "./wait-for.sh mysql npm start"]
+
+  mysql:
+    image: mysql:8
+    container_name: auth-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authservice
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:

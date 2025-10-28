@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-config
+  namespace: gated-stories
+data:
+  SERVICE_PORT: "4000"
+  DB_HOST: "mysql"
+  DB_NAME: "authservice"
+  DB_USER: "admin"
