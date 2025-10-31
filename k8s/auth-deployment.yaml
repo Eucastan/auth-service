@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4000
-          command: ["sh", "-c", "./wait-for.sh mysql 3306 -- npm start"]
+          command: ["sh", "-c", "./wait-for.sh mysql npm start"]
           envFrom:
             - configMapRef:
                 name: auth-config
